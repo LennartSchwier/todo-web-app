@@ -29,4 +29,14 @@ public class ApiController {
     public Note addNewNote(@RequestBody Payload payload) {
         return noteService.addNewNote(payload);
     }
+
+    @PutMapping("{id}")
+    public Note updateNote(@RequestBody Payload payload) {
+        return noteService.updateNote(payload);
+    }
+
+    @DeleteMapping("{id}")
+    public Note deleteNoteById(@PathVariable String id) {
+        return noteService.deleteNoteById(id);
+    }
 }

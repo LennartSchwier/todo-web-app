@@ -24,4 +24,14 @@ public class NoteDataBase {
         dataBase.add(newNote);
         return newNote;
     }
+
+    public Note deleteNoteById(String id) {
+        for (Note searchedNote: dataBase) {
+            if(searchedNote.getId().equals(id)) {
+                dataBase.remove(searchedNote);
+                return searchedNote;
+            }
+        }
+        return null;
+    }
 }

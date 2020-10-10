@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class Payload {
 
     private String description;
+    private String id;
     private Status status;
 }

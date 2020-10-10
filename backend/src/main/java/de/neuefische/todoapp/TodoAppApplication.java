@@ -1,5 +1,6 @@
 package de.neuefische.todoapp;
 
+import de.neuefische.todoapp.model.Status;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
