@@ -4,7 +4,6 @@ import de.neuefische.todoapp.model.Note;
 import de.neuefische.todoapp.model.Payload;
 import de.neuefische.todoapp.model.Status;
 import de.neuefische.todoapp.utils.NoteUtils;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,28 +32,6 @@ class ApiControllerTest {
     @MockBean
     NoteUtils utilsMock;
 
-    @AfterEach
-
-
-    @Test
-    void testGetMappingIntegration() {
-        // GIVEN
-        String url = "http://localhost:" + port + "api/todo";
-        List<Note> expectedResponse = new ArrayList<>(List.of(
-                new Note("adab6aa2-c03d-4310-be10-6539a469bce4", "get coffee", Status.OPEN),
-                new Note("a435d716-a722-43cf-a960-811d568f9461", "write backend", Status.IN_PROGRESS),
-                new Note("d02c94ce-9daa-4348-8dc5-28cc6e0419b2", "take a shower", Status.DONE)
-        ));
-
-        // WHEN
-        ResponseEntity<Note[]> response =
-                restTemplate.getForEntity(url, Note[].class);
-
-        // THEN
-        assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(response.getBody(), is(expectedResponse.toArray()));
-    }
-
     @Test
     void testPostMappingIntegration() {
         // GIVEN
@@ -82,5 +59,25 @@ class ApiControllerTest {
         // THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), is(expectedResponse));
+    }
+
+    @Test
+    void testGetMappingIntegration() {
+        // GIVEN
+        String url = "http://localhost:" + port + "api/todo";
+        List<Note> expectedResponse = new ArrayList<>(List.of(
+                new Note(
+                        "288e002a-4f06-464e-8f77-09103edb7eb2",
+                        "some description",
+                        Status.IN_PROGRESS
+        )));
+
+        // WHEN
+        ResponseEntity<Note[]> response =
+                restTemplate.getForEntity(url, Note[].class);
+
+        // THEN
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(expectedResponse.toArray()));
     }
 }
